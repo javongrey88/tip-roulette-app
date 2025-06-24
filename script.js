@@ -1,3 +1,8 @@
+// Load sounds
+const spinSound = new Audio('assets/sounds/spin.wav');
+const winSound = new Audio('assets/sounds/win.wav');
+
+// Global variables
 let names = [];
 let startAngle = 0;
 let arc = 0;
@@ -10,6 +15,7 @@ if (canvas) {
   ctx = canvas.getContext("2d");
 }
 
+// Add name to list
 function addName() {
   const nameInput = document.getElementById("nameInput");
   const name = nameInput.value.trim();
@@ -21,6 +27,7 @@ function addName() {
   }
 }
 
+// Display name list
 function updateNameList() {
   const list = document.getElementById("nameList");
   list.innerHTML = "";
@@ -31,6 +38,7 @@ function updateNameList() {
   });
 }
 
+// Draw spinning wheel
 function drawWheel() {
   if (!ctx || names.length < 2) return;
 
@@ -51,7 +59,7 @@ function drawWheel() {
     ctx.lineTo(centerX, centerY);
     ctx.fill();
 
-    // Text
+    // Draw name label
     ctx.save();
     ctx.fillStyle = "white";
     ctx.translate(centerX, centerY);
@@ -63,6 +71,7 @@ function drawWheel() {
   }
 }
 
+// Spin animation loop
 function rotateWheel() {
   startAngle += spinAngle;
   drawWheel();
@@ -76,28 +85,65 @@ function rotateWheel() {
   }
 }
 
+// Start spin
 function spinWheel() {
   if (names.length < 2) {
     alert("Add at least two names.");
     return;
   }
 
-  spinAngle = Math.random() * 0.4 + 0.3; // Initial speed
+  spinSound.currentTime = 0;
+  spinSound.play();
+
+  spinAngle = Math.random() * 0.4 + 0.3;
   rotateWheel();
 }
 
+// Announce winner and calculate tip
 function announceWinner() {
+  spinSound.pause();
+
+  // Validate inputs
+  const billInput = document.getElementById("billInput").value;
+  const tipInput = document.getElementById("tipInput").value;
+
+  if (!billInput || !tipInput || isNaN(billInput) || isNaN(tipInput)) {
+    alert("Please enter a valid bill and tip percentage.");
+    return;
+  }
+
+  const bill = parseFloat(billInput);
+  const tipPercent = parseFloat(tipInput);
+  const tipAmount = (bill * tipPercent) / 100;
+
+  // Determine winner
   const degrees = (startAngle * 180) / Math.PI + 90;
   const arcDeg = 360 / names.length;
   const index = Math.floor(((360 - (degrees % 360)) % 360) / arcDeg);
   const winner = names[index];
 
-  const bill = parseFloat(document.getElementById("billInput").value);
-  const tipPercent = parseFloat(document.getElementById("tipInput").value);
-  const tipAmount = (bill * tipPercent) / 100;
-
+  // Display result
   document.getElementById("result").innerHTML = `
     🎉 <strong>${winner}</strong> pays the tip: $${tipAmount.toFixed(2)}
   `;
+
+  // Play win sound and confetti
+  winSound.currentTime = 0;
+  winSound.play();
+  launchConfetti();
 }
+
+// Launch confetti scoped to canvas
+function launchConfetti() {
+  const wheelCanvas = document.getElementById('wheel');
+  const scopedConfetti = confetti.create(wheelCanvas, { resize: true });
+
+  scopedConfetti({
+    particleCount: 150,
+    spread: 80,
+    origin: { y: 0.5 },
+  });
+}
+
+
 
