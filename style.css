@@ -6,6 +6,8 @@
   --text-light: #fff;
   --text-muted: #bbb;
   --border: #444;
+  --input-bg: #3c3c5a;
+  --input-placeholder: #aaa;
 }
 
 [data-theme='light'] {
@@ -16,6 +18,8 @@
   --text-light: #000000;
   --text-muted: #555;
   --border: #ccc;
+  --input-bg: #ffffff;
+  --input-placeholder: #888;
 }
 
 * {
@@ -32,6 +36,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  position: relative;
+  transition: background 0.3s, color 0.3s;
 }
 
 body,
@@ -40,7 +46,6 @@ input,
 button {
   transition: all 0.3s ease-in-out;
 }
-
 
 .app {
   max-width: 420px;
@@ -69,14 +74,15 @@ input[type="text"] {
   width: 100%;
   padding: 0.6em;
   border-radius: 10px;
-  border: none;
+  border: 1px solid var(--border);
   margin-bottom: 1em;
-  background: #3c3c5a;
+  background: var(--input-bg);
   color: var(--text-light);
+  caret-color: var(--text-light);
 }
 
 input::placeholder {
-  color: #aaa;
+  color: var(--input-placeholder);
 }
 
 button {
@@ -102,11 +108,12 @@ ul {
 }
 
 li {
-  background: #444;
+  background: var(--border);
   margin: 0.3em 0;
   padding: 0.6em;
   border-radius: 10px;
   text-align: left;
+  color: var(--text-light);
 }
 
 canvas {
@@ -138,8 +145,4 @@ canvas {
 
 #themeToggle:hover {
   transform: scale(1.2);
-}
-
-body {
-  position: relative;
 }
