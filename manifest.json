@@ -1,0 +1,21 @@
+{
+  "name": "Tip Roulette",
+  "short_name": "TipRoulette",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e1e2f",
+  "theme_color": "#ff4081",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
