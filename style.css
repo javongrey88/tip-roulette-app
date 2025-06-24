@@ -1,36 +1,80 @@
+:root {
+  --bg-main: #1e1e2f;
+  --bg-card: #2c2c44;
+  --accent: #ff4081;
+  --primary: #7f5af0;
+  --text-light: #fff;
+  --text-muted: #bbb;
+  --border: #444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #1e1e2f;
-  color: white;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-light);
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  min-height: 100vh;
 }
 
 .app {
-  max-width: 400px;
+  max-width: 420px;
+  width: 90%;
+  background: var(--bg-card);
+  border-radius: 20px;
   padding: 2em;
-  border-radius: 10px;
-  background: #2c2c44;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
-input,
-button {
-  padding: 0.5em;
-  margin: 0.3em 0;
+h1 {
+  margin-bottom: 1em;
+  color: var(--primary);
+}
+
+label {
+  display: block;
+  margin: 0.6em 0 0.2em;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input[type="number"],
+input[type="text"] {
   width: 100%;
-  border-radius: 5px;
+  padding: 0.6em;
+  border-radius: 10px;
   border: none;
+  margin-bottom: 1em;
+  background: #3c3c5a;
+  color: var(--text-light);
+}
+
+input::placeholder {
+  color: #aaa;
 }
 
 button {
-  background: #ff4081;
-  color: white;
-  font-weight: bold;
+  padding: 0.6em 1em;
+  margin-top: 0.5em;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #e73370;
 }
 
 ul {
@@ -41,22 +85,23 @@ ul {
 
 li {
   background: #444;
-  padding: 0.5em;
-  margin-bottom: 0.3em;
-  border-radius: 5px;
+  margin: 0.3em 0;
+  padding: 0.6em;
+  border-radius: 10px;
+  text-align: left;
 }
-
-.result {
-  font-size: 1.2em;
-  margin-top: 1em;
-  text-align: center;
-}
-
 
 canvas {
   display: block;
   margin: 1em auto;
-  background-color: #222;
+  background: #1a1a2b;
   border-radius: 50%;
-  border: 5px solid #ff4081;
+  border: 5px solid var(--primary);
+}
+
+.result {
+  margin-top: 1.5em;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--accent);
 }
