@@ -145,5 +145,26 @@ function launchConfetti() {
   });
 }
 
+// Theme toggle with persistence
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeButton(newTheme);
+}
+
+function updateThemeButton(theme) {
+  const button = document.getElementById("themeToggle");
+  button.textContent = theme === 'light' ? '🌞' : '🌙';
+}
+
+// Load saved theme
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeButton(savedTheme);
+});
+
 
 
