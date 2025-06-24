@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tip Roulette</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="app">
     <h1>💸 Tip Roulette</h1>
@@ -24,6 +26,9 @@
       </div>
 
       <ul id="nameList"></ul>
+      <canvas id="wheel" width="300" height="300"></canvas>
+      <button onclick="spinWheel()">🎯 Spin the Wheel!</button>
+
 
       <button onclick="spin()">Spin the Wheel!</button>
     </div>
@@ -33,4 +38,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
